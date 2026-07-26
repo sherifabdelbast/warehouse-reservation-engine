@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Enums\ReservationStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reservation extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'order_id',
         'order_item_id',
@@ -21,6 +24,7 @@ class Reservation extends Model
 
     protected $casts = [
         'expires_at' => 'datetime',
+        'status' => ReservationStatus::class,
     ];
 
     public function order(): BelongsTo
